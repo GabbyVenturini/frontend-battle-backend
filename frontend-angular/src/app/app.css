@@ -1,68 +1,272 @@
+/*
+  Cabeçalho principal da aplicação.
+
+  Fica no topo da tela e contém:
+  - a marca/nome do projeto;
+  - o menu de navegação entre Departamentos e Funcionários.
+*/
 .app-header {
+  /*
+    Define uma altura fixa para o cabeçalho.
+  */
   height: 72px;
+
+  /*
+    Espaçamento interno horizontal.
+    0 em cima/baixo e 32px nas laterais.
+  */
   padding: 0 32px;
+
+  /*
+    Cor de fundo escura do cabeçalho.
+  */
   background: #111827;
+
+  /*
+    Cor padrão do texto dentro do cabeçalho.
+  */
   color: #ffffff;
+
+  /*
+    Usa flexbox para organizar os elementos lado a lado.
+  */
   display: flex;
+
+  /*
+    Alinha os itens verticalmente ao centro.
+  */
   align-items: center;
+
+  /*
+    Coloca a marca à esquerda e o menu à direita.
+  */
   justify-content: space-between;
+
+  /*
+    Adiciona uma sombra leve abaixo do cabeçalho.
+  */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
+/*
+  Container da marca do projeto.
+
+  Agrupa o ícone "FB" e os textos:
+  - Frontend Battle
+  - Versão Angular
+*/
 .brand {
+  /*
+    Deixa o ícone e os textos lado a lado.
+  */
   display: flex;
+
+  /*
+    Alinha verticalmente o ícone e os textos.
+  */
   align-items: center;
+
+  /*
+    Espaço entre o ícone e o bloco de textos.
+  */
   gap: 12px;
 }
 
+/*
+  Ícone visual da marca.
+
+  Neste caso, é o quadrado azul com as letras "FB".
+*/
 .brand-icon {
+  /*
+    Largura do ícone.
+  */
   width: 40px;
+
+  /*
+    Altura do ícone.
+  */
   height: 40px;
+
+  /*
+    Fundo azul do ícone.
+  */
   background: #2563eb;
+
+  /*
+    Cor das letras dentro do ícone.
+  */
   color: #ffffff;
+
+  /*
+    Arredonda as bordas do quadrado.
+  */
   border-radius: 10px;
+
+  /*
+    Usa grid para centralizar o texto no meio do quadrado.
+  */
   display: grid;
+
+  /*
+    Centraliza horizontal e verticalmente o conteúdo.
+  */
   place-items: center;
+
+  /*
+    Deixa as letras em negrito.
+  */
   font-weight: 700;
 }
 
+/*
+  Texto principal da marca.
+
+  Exemplo: "Frontend Battle".
+*/
 .brand strong {
+  /*
+    Faz o texto ocupar uma linha própria.
+  */
   display: block;
+
+  /*
+    Tamanho da fonte.
+  */
   font-size: 16px;
 }
 
+/*
+  Texto secundário da marca.
+
+  Exemplo: "Versão Angular".
+*/
 .brand small {
+  /*
+    Faz o texto ocupar uma linha própria abaixo do strong.
+  */
   display: block;
+
+  /*
+    Cor mais clara e discreta para diferenciar do título.
+  */
   color: #cbd5e1;
+
+  /*
+    Tamanho menor da fonte.
+  */
   font-size: 12px;
+
+  /*
+    Pequeno espaço acima do texto.
+  */
   margin-top: 2px;
 }
 
+/*
+  Menu de navegação.
+
+  Contém os links para as telas:
+  - Departamentos
+  - Funcionários
+*/
 .navbar {
+  /*
+    Deixa os links lado a lado.
+  */
   display: flex;
+
+  /*
+    Espaço entre os links.
+  */
   gap: 8px;
 }
 
+/*
+  Estilo padrão dos links do menu.
+*/
 .navbar a {
+  /*
+    Cor inicial dos links.
+  */
   color: #cbd5e1;
+
+  /*
+    Remove o sublinhado padrão dos links.
+  */
   text-decoration: none;
+
+  /*
+    Espaçamento interno dos links.
+    Ajuda a criar aparência de botão.
+  */
   padding: 10px 14px;
+
+  /*
+    Bordas arredondadas nos links.
+  */
   border-radius: 8px;
+
+  /*
+    Tamanho da fonte.
+  */
   font-size: 14px;
+
+  /*
+    Deixa o texto mais forte.
+  */
   font-weight: 600;
+
+  /*
+    Cria uma transição suave ao passar o mouse.
+  */
   transition: 0.2s;
 }
 
+/*
+  Estilo aplicado quando o mouse passa por cima do link.
+*/
 .navbar a:hover {
+  /*
+    Fundo branco com baixa opacidade.
+  */
   background: rgba(255, 255, 255, 0.08);
+
+  /*
+    Texto fica branco no hover.
+  */
   color: #ffffff;
 }
 
+/*
+  Estilo do link ativo.
+
+  No Angular, quando usamos routerLinkActive="active",
+  o link da rota atual recebe a classe active.
+*/
 .navbar a.active {
+  /*
+    Fundo azul para indicar a tela selecionada.
+  */
   background: #2563eb;
+
+  /*
+    Texto branco no item ativo.
+  */
   color: #ffffff;
 }
 
+/*
+  Área principal da aplicação.
+
+  É onde as telas carregadas pelas rotas aparecem.
+  Exemplo:
+  - tela de Departamentos;
+  - tela de Funcionários.
+*/
 .app-main {
+  /*
+    Espaçamento interno ao redor do conteúdo principal.
+  */
   padding: 32px;
 }

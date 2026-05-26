@@ -1,32 +1,90 @@
+<!--
+  Section principal da página de Funcionários.
+  A classe "page" aplica o layout geral da tela pelo CSS.
+-->
 <section class="page">
+  <!--
+    Cabeçalho da página.
+    Contém o identificador da seção, título e descrição da funcionalidade.
+  -->
   <div class="page-header">
     <div>
+      <!-- Texto pequeno acima do título principal -->
       <p class="eyebrow">Gerenciamento</p>
+
+      <!-- Título principal da tela -->
       <h1>Funcionários</h1>
+
+      <!-- Texto explicativo sobre o objetivo da tela -->
       <p class="subtitle">
         Cadastre, edite e gerencie os funcionários da empresa.
       </p>
     </div>
   </div>
 
+  <!--
+    Card do formulário.
+    Aqui ficam os campos usados para cadastrar ou editar um funcionário.
+  -->
   <div class="form-card">
     <div>
+      <!--
+        Título dinâmico do formulário.
+
+        Se editingEmployee tiver valor, significa que o usuário está editando.
+        Se editingEmployee for null, significa que o usuário está cadastrando.
+      -->
       <h2>{{ editingEmployee ? 'Editar Funcionário' : 'Adicionar Funcionário' }}</h2>
+
+      <!--
+        Texto auxiliar dinâmico.
+        Muda conforme o formulário esteja em modo de cadastro ou edição.
+      -->
       <p>
         {{ editingEmployee ? 'Atualize o funcionário selecionado.' : 'Cadastre um novo funcionário.' }}
       </p>
     </div>
 
+    <!--
+      Grid do formulário.
+      Organiza os campos em colunas usando CSS.
+    -->
     <div class="form-grid">
+      <!--
+        Campo de texto para digitar o nome do funcionário.
+
+        [(ngModel)]="employeeName" faz two-way data binding:
+        - quando o usuário digita, a variável employeeName é atualizada no TypeScript;
+        - quando employeeName muda no TypeScript, o input também muda na tela.
+      -->
       <input
         type="text"
         placeholder="Nome do funcionário"
         [(ngModel)]="employeeName"
       />
 
+      <!--
+        Select para escolher o departamento do funcionário.
+
+        [(ngModel)]="departmentId" liga o valor selecionado à variável departmentId.
+      -->
       <select [(ngModel)]="departmentId">
+        <!--
+          Opção inicial do select.
+
+          [ngValue]="null" define que, quando essa opção estiver selecionada,
+          departmentId será null no TypeScript.
+        -->
         <option [ngValue]="null">Selecione o departamento</option>
 
+        <!--
+          Lista os departamentos vindos do backend.
+
+          departments é um signal no TypeScript.
+          Por isso usamos departments() para acessar a lista.
+
+          Para cada departamento, cria uma opção no select.
+        -->
         <option
           *ngFor="let department of departments()"
           [ngValue]="department.id"
@@ -35,22 +93,54 @@
         </option>
       </select>
 
+      <!--
+        Campo de data de entrada do funcionário.
+
+        O input type="date" trabalha com o formato yyyy-MM-dd.
+        O valor fica ligado à variável dateOfJoining.
+      -->
       <input
         type="date"
         [(ngModel)]="dateOfJoining"
       />
 
+      <!--
+        Campo para informar o nome do arquivo da foto.
+
+        Neste projeto, não há upload real de imagem.
+        O sistema salva apenas o nome do arquivo informado.
+      -->
       <input
         type="text"
         placeholder="Nome do arquivo da foto"
         [(ngModel)]="photoFileName"
       />
 
+      <!--
+        Container dos botões do formulário.
+      -->
       <div class="buttons">
+        <!--
+          Botão principal do formulário.
+
+          Ao clicar, chama saveEmployee() no employees.ts.
+
+          Essa função decide se vai:
+          - cadastrar um novo funcionário;
+          - ou atualizar um funcionário existente.
+        -->
         <button type="button" (click)="saveEmployee()">
           {{ editingEmployee ? 'Atualizar' : 'Adicionar' }}
         </button>
 
+        <!--
+          Botão Cancelar.
+
+          Só aparece quando existe um funcionário sendo editado.
+
+          *ngIf="editingEmployee" significa:
+          exibir o botão somente se editingEmployee tiver valor.
+        -->
         <button
           type="button"
           class="secondary"
@@ -63,34 +153,107 @@
     </div>
   </div>
 
+  <!--
+    Card da tabela.
+    Exibe os funcionários cadastrados.
+  -->
   <div class="table-card">
+    <!--
+      Cabeçalho da tabela.
+      Mostra o título e a quantidade de funcionários na lista.
+    -->
     <div class="table-header">
       <h2>Lista de Funcionários</h2>
+
+      <!--
+        employees é um signal no TypeScript.
+        Por isso usamos employees() para acessar o valor atual.
+
+        employees().length retorna a quantidade de funcionários.
+      -->
       <span>{{ employees().length }} item(ns)</span>
     </div>
 
+    <!-- Tabela de funcionários -->
     <table>
       <thead>
         <tr>
+          <!-- Coluna do ID do funcionário -->
           <th>ID</th>
+
+          <!-- Coluna do nome do funcionário -->
           <th>Nome do Funcionário</th>
+
+          <!-- Coluna do departamento vinculado ao funcionário -->
           <th>Departamento</th>
+
+          <!-- Coluna da data de entrada -->
           <th>Data de Entrada</th>
+
+          <!-- Coluna do nome do arquivo da foto -->
           <th>Foto</th>
+
+          <!-- Coluna dos botões de ação -->
           <th class="actions-column">Ações</th>
         </tr>
       </thead>
 
       <tbody>
+        <!--
+          Percorre a lista de funcionários e cria uma linha para cada item.
+
+          *ngFor="let employee of employees()"
+          significa:
+          para cada funcionário dentro da lista employees(), renderize este <tr>.
+        -->
         <tr *ngFor="let employee of employees()">
+          <!-- Exibe o ID do funcionário -->
           <td>{{ employee.id }}</td>
+
+          <!-- Exibe o nome do funcionário -->
           <td>{{ employee.employeeName }}</td>
+
+          <!--
+            Exibe o nome do departamento.
+
+            Primeiro tenta usar:
+            employee.department?.departmentName
+
+            O operador ?. evita erro caso department seja null ou undefined.
+
+            Se department não vier preenchido pela API, usa:
+            getDepartmentName(employee.departmentId)
+
+            Essa função procura o nome do departamento usando o departmentId.
+          -->
           <td>
             {{ employee.department?.departmentName || getDepartmentName(employee.departmentId) }}
           </td>
+
+          <!--
+            Exibe a data de entrada formatada no padrão brasileiro.
+
+            O pipe date transforma a data em dd/MM/yyyy.
+            Exemplo:
+            2026-05-26 -> 26/05/2026
+          -->
           <td>{{ employee.dateOfJoining | date: 'dd/MM/yyyy' }}</td>
+
+          <!--
+            Exibe o nome do arquivo da foto.
+
+            Se photoFileName estiver vazio, mostra "-".
+          -->
           <td>{{ employee.photoFileName || '-' }}</td>
+
+          <!-- Coluna com botões de editar e excluir -->
           <td class="actions">
+            <!--
+              Botão Editar.
+
+              Ao clicar, envia o funcionário atual para editEmployee().
+              Essa função preenche o formulário com os dados do funcionário selecionado.
+            -->
             <button
               type="button"
               class="outline"
@@ -99,6 +262,12 @@
               Editar
             </button>
 
+            <!--
+              Botão Excluir.
+
+              Ao clicar, envia o ID do funcionário para deleteEmployee().
+              Essa função confirma a exclusão e chama a API para remover o registro.
+            -->
             <button
               type="button"
               class="danger"
@@ -109,7 +278,16 @@
           </td>
         </tr>
 
+        <!--
+          Linha exibida quando não existe nenhum funcionário cadastrado.
+
+          *ngIf="employees().length === 0"
+          mostra essa linha somente se a lista estiver vazia.
+        -->
         <tr *ngIf="employees().length === 0">
+          <!--
+            colspan="6" faz essa célula ocupar todas as 6 colunas da tabela.
+          -->
           <td colspan="6" class="empty-state">
             Nenhum funcionário cadastrado.
           </td>

@@ -1,184 +1,584 @@
+/*
+  Estiliza o botão/contador do template inicial.
+
+  Essa classe geralmente é usada em exemplos do Vite/Vue
+  para mostrar um botão com contador.
+*/
 .counter {
+  /*
+    Define o tamanho do texto.
+  */
   font-size: 16px;
+
+  /*
+    Espaçamento interno:
+    5px em cima/baixo e 10px nas laterais.
+  */
   padding: 5px 10px;
+
+  /*
+    Arredonda as bordas do botão.
+  */
   border-radius: 5px;
+
+  /*
+    Usa uma variável CSS para definir a cor do texto.
+    Essa variável precisa estar declarada em outro arquivo CSS.
+  */
   color: var(--accent);
+
+  /*
+    Usa uma variável CSS para definir a cor de fundo.
+  */
   background: var(--accent-bg);
+
+  /*
+    Cria uma borda transparente.
+    Ela fica invisível inicialmente, mas permite animação no hover.
+  */
   border: 2px solid transparent;
+
+  /*
+    Faz a troca da cor da borda acontecer de forma suave.
+  */
   transition: border-color 0.3s;
+
+  /*
+    Espaço abaixo do elemento.
+  */
   margin-bottom: 24px;
 
+  /*
+    Quando o mouse passa por cima do botão,
+    a borda passa a usar a cor definida em --accent-border.
+  */
   &:hover {
     border-color: var(--accent-border);
   }
+
+  /*
+    Estilo aplicado quando o elemento recebe foco via teclado.
+
+    focus-visible melhora a acessibilidade, pois mostra o contorno
+    quando o usuário navega usando Tab.
+  */
   &:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
 }
 
+/*
+  Área visual principal do template.
+
+  Essa classe organiza imagens/logos sobrepostos,
+  como a base, o framework e o Vite.
+*/
 .hero {
+  /*
+    Permite posicionar elementos filhos com position: absolute
+    usando este container como referência.
+  */
   position: relative;
 
+  /*
+    Aplica regras comuns para os elementos:
+    .base, .framework e .vite.
+  */
   .base,
   .framework,
   .vite {
+    /*
+      Centraliza horizontalmente elementos posicionados.
+    */
     inset-inline: 0;
+
+    /*
+      Centraliza o elemento na horizontal.
+    */
     margin: 0 auto;
   }
 
+  /*
+    Estilo da imagem/base principal.
+  */
   .base {
+    /*
+      Define a largura da base.
+    */
     width: 170px;
+
+    /*
+      Mantém a base no fluxo relativo do layout.
+    */
     position: relative;
+
+    /*
+      Define a ordem de sobreposição.
+      z-index menor fica atrás de elementos com z-index maior.
+    */
     z-index: 0;
   }
 
+  /*
+    Framework e Vite são posicionados por cima da base.
+  */
   .framework,
   .vite {
+    /*
+      Remove os elementos do fluxo normal da página
+      e permite posicionar usando top, left, right etc.
+    */
     position: absolute;
   }
 
+  /*
+    Estiliza o logo/elemento do framework.
+  */
   .framework {
+    /*
+      Coloca o framework acima da base.
+    */
     z-index: 1;
+
+    /*
+      Distância do topo dentro do container .hero.
+    */
     top: 34px;
+
+    /*
+      Altura do elemento.
+    */
     height: 28px;
+
+    /*
+      Aplica uma transformação 3D para inclinar e escalar o elemento.
+      Isso cria um efeito de perspectiva.
+    */
     transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
       scale(1.4);
   }
 
+  /*
+    Estiliza o logo/elemento do Vite.
+  */
   .vite {
+    /*
+      Mantém o elemento em uma camada inferior.
+    */
     z-index: 0;
+
+    /*
+      Distância do topo dentro do container .hero.
+    */
     top: 107px;
+
+    /*
+      Altura do elemento.
+    */
     height: 26px;
+
+    /*
+      Mantém a largura proporcional à altura.
+    */
     width: auto;
+
+    /*
+      Aplica efeito 3D semelhante ao framework,
+      mas com escala menor.
+    */
     transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
       scale(0.8);
   }
 }
 
+/*
+  Container central do template.
+
+  Geralmente usado para centralizar o conteúdo principal da página inicial.
+*/
 #center {
+  /*
+    Usa flexbox para organizar os elementos.
+  */
   display: flex;
+
+  /*
+    Organiza os elementos em coluna.
+  */
   flex-direction: column;
+
+  /*
+    Espaço entre os elementos filhos.
+  */
   gap: 25px;
+
+  /*
+    Centraliza o conteúdo no eixo principal.
+  */
   place-content: center;
+
+  /*
+    Centraliza os itens no eixo transversal.
+  */
   place-items: center;
+
+  /*
+    Faz o container crescer para ocupar o espaço disponível.
+  */
   flex-grow: 1;
 
+  /*
+    Regras aplicadas quando a tela tem até 1024px de largura.
+    Serve para melhorar o layout em tablets e celulares.
+  */
   @media (max-width: 1024px) {
+    /*
+      Ajusta o espaçamento interno em telas menores.
+    */
     padding: 32px 20px 24px;
+
+    /*
+      Reduz o espaço entre os elementos.
+    */
     gap: 18px;
   }
 }
 
+/*
+  Seção de próximos passos do template.
+
+  Normalmente aparece abaixo da área principal
+  com links para documentação, comunidade ou recursos.
+*/
 #next-steps {
+  /*
+    Usa flexbox para deixar os blocos lado a lado.
+  */
   display: flex;
+
+  /*
+    Linha superior separando esta seção do conteúdo anterior.
+  */
   border-top: 1px solid var(--border);
+
+  /*
+    Alinha o texto à esquerda.
+  */
   text-align: left;
 
+  /*
+    Aplica estilo nos filhos diretos de #next-steps.
+  */
   & > div {
+    /*
+      Cada bloco ocupa o mesmo espaço disponível.
+    */
     flex: 1 1 0;
+
+    /*
+      Espaçamento interno dos blocos.
+    */
     padding: 32px;
+
+    /*
+      Em telas menores, reduz o padding.
+    */
     @media (max-width: 1024px) {
       padding: 24px 20px;
     }
   }
 
+  /*
+    Estiliza ícones dentro da seção.
+  */
   .icon {
+    /*
+      Espaço abaixo do ícone.
+    */
     margin-bottom: 16px;
+
+    /*
+      Largura do ícone.
+    */
     width: 22px;
+
+    /*
+      Altura do ícone.
+    */
     height: 22px;
   }
 
+  /*
+    Em telas menores, os blocos deixam de ficar lado a lado
+    e passam a ficar um abaixo do outro.
+  */
   @media (max-width: 1024px) {
     flex-direction: column;
     text-align: center;
   }
 }
 
+/*
+  Bloco específico da área de documentação.
+*/
 #docs {
+  /*
+    Adiciona uma borda à direita para separar visualmente os blocos.
+  */
   border-right: 1px solid var(--border);
 
+  /*
+    Em telas menores, remove a borda da direita
+    e adiciona uma borda inferior.
+  */
   @media (max-width: 1024px) {
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
 }
 
+/*
+  Lista de links dentro da seção next-steps.
+*/
 #next-steps ul {
+  /*
+    Remove os marcadores padrão da lista.
+  */
   list-style: none;
+
+  /*
+    Remove o espaçamento interno padrão da lista.
+  */
   padding: 0;
+
+  /*
+    Organiza os itens da lista lado a lado.
+  */
   display: flex;
+
+  /*
+    Espaço entre os itens.
+  */
   gap: 8px;
+
+  /*
+    Espaçamento superior da lista.
+  */
   margin: 32px 0 0;
 
+  /*
+    Estiliza logos dentro da lista.
+  */
   .logo {
     height: 18px;
   }
 
+  /*
+    Estiliza os links da lista.
+  */
   a {
+    /*
+      Cor do texto usando variável CSS.
+    */
     color: var(--text-h);
+
+    /*
+      Tamanho da fonte.
+    */
     font-size: 16px;
+
+    /*
+      Arredonda as bordas dos links.
+    */
     border-radius: 6px;
+
+    /*
+      Cor de fundo do link.
+    */
     background: var(--social-bg);
+
+    /*
+      Usa flexbox para alinhar ícone e texto.
+    */
     display: flex;
+
+    /*
+      Espaçamento interno do link.
+    */
     padding: 6px 12px;
+
+    /*
+      Centraliza verticalmente ícone e texto.
+    */
     align-items: center;
+
+    /*
+      Espaço entre o ícone e o texto.
+    */
     gap: 8px;
+
+    /*
+      Remove o sublinhado padrão dos links.
+    */
     text-decoration: none;
+
+    /*
+      Faz a sombra aparecer suavemente no hover.
+    */
     transition: box-shadow 0.3s;
 
+    /*
+      Quando passa o mouse, aplica uma sombra.
+    */
     &:hover {
       box-shadow: var(--shadow);
     }
+
+    /*
+      Estiliza ícones usados dentro dos botões/links.
+    */
     .button-icon {
       height: 18px;
       width: 18px;
     }
   }
 
+  /*
+    Ajustes para telas menores.
+  */
   @media (max-width: 1024px) {
+    /*
+      Reduz o espaço acima da lista.
+    */
     margin-top: 20px;
+
+    /*
+      Permite quebrar os itens em mais de uma linha.
+    */
     flex-wrap: wrap;
+
+    /*
+      Centraliza os itens.
+    */
     justify-content: center;
 
+    /*
+      Cada item ocupa metade da linha, descontando o espaçamento.
+    */
     li {
       flex: 1 1 calc(50% - 8px);
     }
 
+    /*
+      Faz o link ocupar toda a largura do item.
+    */
     a {
       width: 100%;
+
+      /*
+        Centraliza o conteúdo dentro do link.
+      */
       justify-content: center;
+
+      /*
+        Inclui padding e borda no cálculo da largura total.
+      */
       box-sizing: border-box;
     }
   }
 }
 
+/*
+  Espaçador inferior do template.
+
+  Cria uma área vazia com borda superior.
+*/
 #spacer {
+  /*
+    Altura do espaçador em telas maiores.
+  */
   height: 88px;
+
+  /*
+    Linha superior separadora.
+  */
   border-top: 1px solid var(--border);
+
+  /*
+    Em telas menores, reduz a altura.
+  */
   @media (max-width: 1024px) {
     height: 48px;
   }
 }
 
+/*
+  Classe usada para criar pequenos marcadores visuais nas extremidades.
+
+  Usa pseudo-elementos ::before e ::after.
+*/
 .ticks {
+  /*
+    Define posição relativa para servir de referência
+    aos pseudo-elementos posicionados de forma absoluta.
+  */
   position: relative;
+
+  /*
+    Ocupa toda a largura disponível.
+  */
   width: 100%;
 
+  /*
+    Cria os dois marcadores laterais.
+  */
   &::before,
   &::after {
+    /*
+      Pseudo-elementos precisam de content para aparecer.
+    */
     content: '';
+
+    /*
+      Posiciona os marcadores de forma absoluta dentro de .ticks.
+    */
     position: absolute;
+
+    /*
+      Ajusta a posição vertical dos marcadores.
+    */
     top: -4.5px;
+
+    /*
+      Cria triângulos usando bordas transparentes.
+    */
     border: 5px solid transparent;
   }
 
+  /*
+    Marcador do lado esquerdo.
+  */
   &::before {
     left: 0;
+
+    /*
+      Define a cor da borda esquerda,
+      formando um pequeno triângulo.
+    */
     border-left-color: var(--border);
   }
+
+  /*
+    Marcador do lado direito.
+  */
   &::after {
     right: 0;
+
+    /*
+      Define a cor da borda direita,
+      formando um pequeno triângulo.
+    */
     border-right-color: var(--border);
   }
 }

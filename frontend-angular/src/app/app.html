@@ -1,13 +1,54 @@
+<!--
+  Cabeçalho principal da aplicação.
+
+  Ele fica fixado visualmente no topo da tela e contém:
+  - a identificação do projeto;
+  - o menu de navegação entre páginas.
+-->
 <header class="app-header">
+  <!--
+    Bloco da marca do sistema.
+
+    Contém o ícone "FB" e os textos:
+    - Frontend Battle
+    - Versão Angular
+  -->
   <div class="brand">
+    <!--
+      Ícone visual da marca.
+
+      Neste caso, é apenas um texto "FB" estilizado pelo CSS.
+    -->
     <span class="brand-icon">FB</span>
+
+    <!--
+      Bloco com o nome do projeto e a tecnologia usada.
+    -->
     <div>
+      <!-- Nome principal da aplicação -->
       <strong>Frontend Battle</strong>
+
+      <!-- Informação secundária indicando que esta versão é feita em Angular -->
       <small>Versão Angular</small>
     </div>
   </div>
 
+  <!--
+    Menu de navegação da aplicação.
+
+    Aqui ficam os links que levam para as telas principais.
+  -->
   <nav class="navbar">
+    <!--
+      Link para a tela de Departamentos.
+
+      routerLink="/departments":
+      Define para qual rota o Angular deve navegar ao clicar.
+
+      routerLinkActive="active":
+      Adiciona automaticamente a classe "active" quando essa rota estiver aberta.
+      Essa classe é usada no CSS para destacar o menu selecionado.
+    -->
     <a
       routerLink="/departments"
       routerLinkActive="active"
@@ -15,6 +56,12 @@
       Departamentos
     </a>
 
+    <!--
+      Link para a tela de Funcionários.
+
+      Ao clicar, o Angular navega para /employees
+      sem recarregar a página inteira.
+    -->
     <a
       routerLink="/employees"
       routerLinkActive="active"
@@ -24,6 +71,19 @@
   </nav>
 </header>
 
+<!--
+  Área principal da aplicação.
+
+  É aqui que as páginas são renderizadas conforme a rota atual.
+-->
 <main class="app-main">
+  <!--
+    router-outlet é o espaço reservado onde o Angular carrega
+    o componente correspondente à rota.
+
+    Exemplo:
+    - Se a URL for /departments, carrega o componente Departments.
+    - Se a URL for /employees, carrega o componente Employees.
+  -->
   <router-outlet></router-outlet>
 </main>

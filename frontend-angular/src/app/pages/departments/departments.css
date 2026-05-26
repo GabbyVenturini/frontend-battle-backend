@@ -1,12 +1,24 @@
+/*
+  Classe principal da página.
+  Aplica um espaçamento interno em toda a tela para o conteúdo não ficar colado nas bordas.
+*/
 .page {
   padding: 24px;
 }
 
+/*
+  Estiliza o título principal da página.
+  Exemplo: "Departamentos".
+*/
 h1 {
   margin-bottom: 24px;
   color: #222;
 }
 
+/*
+  Card do formulário de cadastro/edição.
+  Cria uma caixa com fundo claro, espaçamento interno e bordas arredondadas.
+*/
 .form-card {
   background: #f7f7f7;
   padding: 16px;
@@ -14,17 +26,30 @@ h1 {
   margin-bottom: 24px;
 }
 
+/*
+  Estiliza o título dentro do card do formulário.
+  Remove a margem superior e adiciona espaço abaixo.
+*/
 .form-card h2 {
   margin-top: 0;
   margin-bottom: 12px;
 }
 
+/*
+  Linha onde ficam o input e os botões do formulário.
+  Usa flexbox para deixar os elementos lado a lado.
+  O flex-wrap permite quebrar linha em telas menores.
+*/
 .form-row {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 
+/*
+  Estiliza os campos de texto.
+  Define espaçamento interno, largura mínima, borda e borda arredondada.
+*/
 input {
   padding: 8px;
   min-width: 260px;
@@ -32,6 +57,10 @@ input {
   border-radius: 4px;
 }
 
+/*
+  Estilo padrão dos botões.
+  Aplica tamanho, remove borda padrão, muda o cursor e define cor escura.
+*/
 button {
   padding: 8px 12px;
   border: none;
@@ -41,20 +70,37 @@ button {
   border-radius: 4px;
 }
 
+/*
+  Botão secundário.
+  Usado no botão "Cancelar".
+*/
 button.secondary {
   background: #777;
 }
 
+/*
+  Botão de ação destrutiva.
+  Usado no botão "Excluir".
+*/
 button.danger {
   background: #b00020;
 }
 
+/*
+  Estiliza a tabela.
+  width: 100% faz a tabela ocupar toda a largura disponível.
+  border-collapse remove espaços entre as bordas das células.
+*/
 table {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
 }
 
+/*
+  Estiliza células do cabeçalho e do corpo da tabela.
+  Aplica espaçamento interno, borda inferior e alinhamento à esquerda.
+*/
 th,
 td {
   padding: 12px;
@@ -62,10 +108,18 @@ td {
   text-align: left;
 }
 
+/*
+  Estiliza somente o cabeçalho da tabela.
+  Aplica um fundo cinza claro para diferenciar dos dados.
+*/
 th {
   background: #f0f0f0;
 }
 
+/*
+  Container dos botões de ação dentro da tabela.
+  Deixa os botões "Editar" e "Excluir" lado a lado com espaço entre eles.
+*/
 .actions {
   display: flex;
   gap: 8px;

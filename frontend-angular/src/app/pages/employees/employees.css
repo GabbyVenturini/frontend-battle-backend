@@ -1,11 +1,23 @@
+/*
+  Classe principal da página.
+  Aplica espaçamento interno em toda a tela para o conteúdo não ficar colado nas bordas.
+*/
 .page {
   padding: 24px;
 }
 
+/*
+  Estiliza o título principal da tela.
+  Exemplo: "Funcionários".
+*/
 h1 {
   margin-bottom: 24px;
 }
 
+/*
+  Card do formulário de cadastro/edição.
+  Cria uma caixa com fundo claro, espaçamento interno e bordas arredondadas.
+*/
 .form-card {
   background: #f7f7f7;
   padding: 16px;
@@ -13,16 +25,38 @@ h1 {
   margin-bottom: 24px;
 }
 
+/*
+  Estiliza o título dentro do card do formulário.
+  Remove a margem superior para alinhar melhor o conteúdo.
+*/
 .form-card h2 {
   margin-top: 0;
 }
 
+/*
+  Grid do formulário de funcionários.
+
+  display: grid transforma o formulário em uma grade.
+  repeat(2, minmax(220px, 1fr)) cria duas colunas:
+  - cada coluna tem no mínimo 220px;
+  - se houver espaço, elas dividem igualmente a largura disponível.
+
+  gap define o espaço entre os campos.
+*/
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(220px, 1fr));
   gap: 12px;
 }
 
+/*
+  Estiliza os campos do formulário:
+  - input de texto;
+  - input de data;
+  - select de departamento.
+
+  Define espaçamento interno, borda e bordas arredondadas.
+*/
 input,
 select {
   padding: 8px;
@@ -30,11 +64,28 @@ select {
   border-radius: 4px;
 }
 
+/*
+  Container dos botões do formulário.
+
+  Usado para deixar os botões "Adicionar/Atualizar" e "Cancelar"
+  lado a lado com espaço entre eles.
+*/
 .buttons {
   display: flex;
   gap: 8px;
 }
 
+/*
+  Estilo padrão dos botões.
+
+  Define:
+  - espaçamento interno;
+  - remove a borda padrão;
+  - cursor de clique;
+  - fundo escuro;
+  - texto branco;
+  - bordas arredondadas.
+*/
 button {
   padding: 8px 12px;
   border: none;
@@ -44,20 +95,48 @@ button {
   border-radius: 4px;
 }
 
+/*
+  Botão secundário.
+
+  Usado no botão "Cancelar".
+*/
 button.secondary {
   background: #777;
 }
 
+/*
+  Botão de ação destrutiva.
+
+  Usado no botão "Excluir".
+  A cor vermelha indica uma ação de risco.
+*/
 button.danger {
   background: #b00020;
 }
 
+/*
+  Estiliza a tabela.
+
+  width: 100% faz a tabela ocupar toda a largura disponível.
+  border-collapse junta as bordas das células, deixando o visual mais limpo.
+  background define fundo branco para a tabela.
+*/
 table {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
 }
 
+/*
+  Estiliza as células do cabeçalho e do corpo da tabela.
+
+  th representa o cabeçalho.
+  td representa os dados.
+
+  padding cria espaçamento interno.
+  border-bottom cria uma linha separando as linhas da tabela.
+  text-align: left alinha o texto à esquerda.
+*/
 th,
 td {
   padding: 12px;
@@ -65,6 +144,11 @@ td {
   text-align: left;
 }
 
+/*
+  Container dos botões de ação dentro da tabela.
+
+  Deixa os botões "Editar" e "Excluir" lado a lado.
+*/
 .actions {
   display: flex;
   gap: 8px;
