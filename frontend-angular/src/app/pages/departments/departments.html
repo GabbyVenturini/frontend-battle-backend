@@ -1,0 +1,88 @@
+<section class="page">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">Gerenciamento</p>
+      <h1>Departamentos</h1>
+      <p class="subtitle">
+        Cadastre, edite e gerencie os departamentos da empresa.
+      </p>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <div>
+      <h2>{{ editingDepartment ? 'Editar Departamento' : 'Adicionar Departamento' }}</h2>
+      <p>
+        {{ editingDepartment ? 'Atualize o departamento selecionado.' : 'Cadastre um novo departamento.' }}
+      </p>
+    </div>
+
+    <div class="form-row">
+      <input
+        type="text"
+        placeholder="Nome do departamento"
+        [(ngModel)]="departmentName"
+      />
+
+      <button type="button" (click)="saveDepartment()">
+        {{ editingDepartment ? 'Atualizar' : 'Adicionar' }}
+      </button>
+
+      <button
+        type="button"
+        class="secondary"
+        *ngIf="editingDepartment"
+        (click)="cancelEdit()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <h2>Lista de Departamentos</h2>
+      <span>{{ departments().length }} item(ns)</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome do Departamento</th>
+          <th class="actions-column">Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let department of departments()">
+          <td>{{ department.id }}</td>
+          <td>{{ department.departmentName }}</td>
+          <td class="actions">
+            <button
+              type="button"
+              class="outline"
+              (click)="editDepartment(department)"
+            >
+              Editar
+            </button>
+
+            <button
+              type="button"
+              class="danger"
+              (click)="deleteDepartment(department.id)"
+            >
+              Excluir
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngIf="departments().length === 0">
+          <td colspan="3" class="empty-state">
+            Nenhum departamento cadastrado.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -482,3 +482,21 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+bin/
+obj/
+
+
+# SQLite temporários
+*.db-shm
+*.db-wal
+
+# Frontend
+node_modules/
+dist/
+.env
+.env.local
+
+# Sistema
+.DS_Store
+Thumbs.db

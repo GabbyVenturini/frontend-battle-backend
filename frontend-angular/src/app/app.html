@@ -1,0 +1,29 @@
+<header class="app-header">
+  <div class="brand">
+    <span class="brand-icon">FB</span>
+    <div>
+      <strong>Frontend Battle</strong>
+      <small>Versão Angular</small>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <a
+      routerLink="/departments"
+      routerLinkActive="active"
+    >
+      Departamentos
+    </a>
+
+    <a
+      routerLink="/employees"
+      routerLinkActive="active"
+    >
+      Funcionários
+    </a>
+  </nav>
+</header>
+
+<main class="app-main">
+  <router-outlet></router-outlet>
+</main>

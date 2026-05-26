@@ -1,0 +1,120 @@
+<section class="page">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">Gerenciamento</p>
+      <h1>Funcionários</h1>
+      <p class="subtitle">
+        Cadastre, edite e gerencie os funcionários da empresa.
+      </p>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <div>
+      <h2>{{ editingEmployee ? 'Editar Funcionário' : 'Adicionar Funcionário' }}</h2>
+      <p>
+        {{ editingEmployee ? 'Atualize o funcionário selecionado.' : 'Cadastre um novo funcionário.' }}
+      </p>
+    </div>
+
+    <div class="form-grid">
+      <input
+        type="text"
+        placeholder="Nome do funcionário"
+        [(ngModel)]="employeeName"
+      />
+
+      <select [(ngModel)]="departmentId">
+        <option [ngValue]="null">Selecione o departamento</option>
+
+        <option
+          *ngFor="let department of departments()"
+          [ngValue]="department.id"
+        >
+          {{ department.departmentName }}
+        </option>
+      </select>
+
+      <input
+        type="date"
+        [(ngModel)]="dateOfJoining"
+      />
+
+      <input
+        type="text"
+        placeholder="Nome do arquivo da foto"
+        [(ngModel)]="photoFileName"
+      />
+
+      <div class="buttons">
+        <button type="button" (click)="saveEmployee()">
+          {{ editingEmployee ? 'Atualizar' : 'Adicionar' }}
+        </button>
+
+        <button
+          type="button"
+          class="secondary"
+          *ngIf="editingEmployee"
+          (click)="cancelEdit()"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <h2>Lista de Funcionários</h2>
+      <span>{{ employees().length }} item(ns)</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome do Funcionário</th>
+          <th>Departamento</th>
+          <th>Data de Entrada</th>
+          <th>Foto</th>
+          <th class="actions-column">Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let employee of employees()">
+          <td>{{ employee.id }}</td>
+          <td>{{ employee.employeeName }}</td>
+          <td>
+            {{ employee.department?.departmentName || getDepartmentName(employee.departmentId) }}
+          </td>
+          <td>{{ employee.dateOfJoining | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ employee.photoFileName || '-' }}</td>
+          <td class="actions">
+            <button
+              type="button"
+              class="outline"
+              (click)="editEmployee(employee)"
+            >
+              Editar
+            </button>
+
+            <button
+              type="button"
+              class="danger"
+              (click)="deleteEmployee(employee.id)"
+            >
+              Excluir
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngIf="employees().length === 0">
+          <td colspan="6" class="empty-state">
+            Nenhum funcionário cadastrado.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
